@@ -37,7 +37,7 @@ function displayImages(containerId, images) {
 }
 
 // Funktion zum Aktualisieren der angezeigten Bilder
-function updateDisplay() {
+function initDisplay() {
     const container = document.getElementById('image-container');
     container.innerHTML = ''; // Container leeren
 
@@ -48,6 +48,7 @@ function updateDisplay() {
     ballDiv.style.textAlign = 'center';
 
     const ballImg = document.createElement('img');
+    ballImg.id = 'ball';
     ballImg.src = `ball/ball_${currentBallIndex}.png`;
     ballImg.alt = `ball_${currentBallIndex}`;
     ballImg.style.display = 'block';
@@ -70,6 +71,7 @@ function updateDisplay() {
     sunDiv.style.textAlign = 'center';
 
     const sunImg = document.createElement('img');
+    sunImg.id = 'sun';
     sunImg.src = `sun/sun_${currentSunIndex}.png`;
     sunImg.alt = `sun_${currentSunIndex}`;
     sunImg.style.display = 'block';
@@ -87,6 +89,19 @@ function updateDisplay() {
 
     container.appendChild(ballDiv);
     container.appendChild(sunDiv);
+    const imgTag = document.getElementById("anzeige");
+    imgTag.src = images[index];
+}
+
+// Build display
+initDisplay();
+
+// Funktion zum Aktualisieren der angezeigten Bilder
+function updateDisplay() {
+    const ballImg = document.getElementById("ball");
+    ballImg.src = `ball/ball_${currentBallIndex}.png`;
+    const sunImg = document.getElementById("sun");
+    sunImg.src = `sun/sun_${currentSunIndex}.png`;
 }
 
 // Sun Button Funktionen
@@ -145,6 +160,6 @@ function ballAuto() {
     } else {
         ballAutoInterval = setInterval(() => {
             ballRight();
-        }, 300); // Alle 300ms wechseln
+        }, 600); // Alle 600ms wechseln
     }
 }
