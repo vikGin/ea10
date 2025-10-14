@@ -23,18 +23,7 @@ let ballDirection = 1; // 1 für vorwärts, -1 für rückwärts
 let sunAutoInterval = null;
 let ballAutoInterval = null;
 
-// Funktion zum Erzeugen von <img>-Elementen und Hinzufügen zum HTML
-function displayImages(containerId, images) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = ''; // Container leeren
-    images.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = src;
-        img.style.margin = '8px';
-        container.appendChild(img);
-    });
-}
+
 
 // Funktion zum Aktualisieren der angezeigten Bilder
 function initDisplay() {
@@ -56,9 +45,9 @@ function initDisplay() {
 
     const ballButtons = document.createElement('div');
     ballButtons.innerHTML = `
-        <button onclick="ballLeft()">ballL</button>
-        <button onclick="ballAuto()">ballAuto</button>
-        <button onclick="ballRight()">ballR</button>
+        <button onclick="ballLeft()">ballDown</button>
+        <button onclick="ballAuto()">ballAuto[Space]</button>
+        <button onclick="ballRight()">ballUP</button>
     `;
 
     ballDiv.appendChild(ballImg);
@@ -79,9 +68,9 @@ function initDisplay() {
 
     const sunButtons = document.createElement('div');
     sunButtons.innerHTML = `
-        <button onclick="sunLeft()">sunL</button>
+        <button onclick="sunRight()">sunL</button>
         <button onclick="sunAuto()">sunAuto</button>
-        <button onclick="sunRight()">sunR</button>
+        <button onclick="sunLeft()">sunR</button>
     `;
 
     sunDiv.appendChild(sunImg);
@@ -89,12 +78,7 @@ function initDisplay() {
 
     container.appendChild(ballDiv);
     container.appendChild(sunDiv);
-    const imgTag = document.getElementById("anzeige");
-    imgTag.src = images[index];
 }
-
-// Build display
-initDisplay();
 
 // Funktion zum Aktualisieren der angezeigten Bilder
 function updateDisplay() {

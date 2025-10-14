@@ -9,7 +9,58 @@
   <div id="image-container"></div>
   <script>
     window.onload = function () {
-      updateDisplay();
+      initDisplay();
+
+      // Setup keyboard event listeners after DOM is ready
+      window.addEventListener('keydown', function (event) {
+        console.log('Key pressed:', event.key); // Debug logging
+
+        switch (event.key) {
+          case 'ArrowUp':
+            console.log('Ball Right');
+            ballRight(); // ballUp
+            event.preventDefault();
+            break;
+          case 'ArrowDown':
+            console.log('Ball Left');
+            ballLeft(); // ballDown
+            event.preventDefault();
+            break;
+          case ' ':
+            console.log('Ball Auto');
+            ballAuto(); // space bar for ballAuto
+            event.preventDefault();
+            break;
+          case 'ArrowLeft':
+            console.log('Sun Left button (moves right)');
+            sunRight(); // left arrow for sunL button (moves right)
+            event.preventDefault();
+            break;
+          case 'l':
+          case 'L':
+            console.log('Sun Left button (moves right)');
+            sunRight(); // L key for sunL button (moves right)
+            event.preventDefault();
+            break;
+          case 'ArrowRight':
+            console.log('Sun Right button (moves left)');
+            sunLeft(); // right arrow for sunR button (moves left)
+            event.preventDefault();
+            break;
+          case 'r':
+          case 'R':
+            console.log('Sun Right button (moves left)');
+            sunLeft(); // R key for sunR button (moves left)
+            event.preventDefault();
+            break;
+          case 'a':
+          case 'A':
+            console.log('Sun Auto');
+            sunAuto(); // A key for sunAuto
+            event.preventDefault();
+            break;
+        }
+      });
     };
   </script>
 </body>
