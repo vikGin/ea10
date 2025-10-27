@@ -3,7 +3,6 @@
 
     const canvas = document.getElementById('background-canvas');
     const gl = canvas.getContext('webgl2');
-    if (!gl) { console.error('WebGL2 not available'); return; }
 
     // Compile a vertex shader (WebGL 2.0 ES 3.00 syntax)
     const vsSource = `#version 300 es
@@ -14,9 +13,6 @@ void main(){
     const vs = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vs, vsSource);
     gl.compileShader(vs);
-    if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) {
-        console.error('Vertex shader error:', gl.getShaderInfoLog(vs));
-    }
 
     // Compile a fragment shader (WebGL 2.0 ES 3.00 syntax)
     const fsSource = `#version 300 es
@@ -51,5 +47,4 @@ void main() {
     gl.clearColor(1.0, 1.0, 1.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.drawArrays(gl.LINE_STRIP, 0, vertices.length / 2);
-
 })();
