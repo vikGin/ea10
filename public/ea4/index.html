@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>EA 4 - Parametrisierte Flächen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #87ceeb 0%, #e0f6ff 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        canvas {
+            height: auto;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 30%, #fffaf0, #fff5e6);
+            display: block;
+            box-shadow: 0 10px 40px rgba(255, 140, 0, 0.15);
+            border: 2px solid rgba(255, 140, 0, 0.1);
+        }
+
+        section#doc {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        section#doc h2 {
+            color: #333;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        section#doc p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        section#doc ul {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        section#doc li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <h1>EA 4 - Parametrisierte Flächen Viktoria Hürten</h1>
+
+        <canvas id="canvas" width="500px" height="500px"></canvas>
+
+        <section id="doc">
+            <h2>🎄 Erklärung der parametrisierten Flächen</h2>
+
+            <h3 style="color: #2d5016; margin-top: 15px; margin-bottom: 8px;">1. Tannenbaum (3 grüne Kegel)</h3>
+            <p><strong>Formel:</strong> Rotationskegel mit Radius r und Höhe h</p>
+            <ul>
+                <li><strong>x, z:</strong> Kreisform mit wachsendem Radius: r × cos(Winkel) und r × sin(Winkel)</li>
+                <li><strong>y:</strong> Höhe wird von oben nach unten berechnet: Höhe × (1 - r)</li>
+                <li><strong>Trick:</strong> Drei Kegel übereinander mit unterschiedlicher Größe → Tannenbaum-Form</li>
+            </ul>
+
+            <h3 style="color: #ffd700; margin-top: 15px; margin-bottom: 8px;">2. Lichterkette (gelber Schlauch)</h3>
+            <p><strong>Formel:</strong> Helix-Röhre mit kreisförmigem Querschnitt</p>
+            <ul>
+                <li><strong>Mittellinie:</strong> Helix wächst spiralförmig nach oben: x = r×cos(t), y = t, z = r×sin(t)
+                </li>
+                <li><strong>Röhre:</strong> Um die Mittellinie wird ein Kreis gezogen, der einen Schlauch bildet</li>
+                <li><strong>Effekt:</strong> Sieht aus wie eine dekorative Lichterkette</li>
+            </ul>
+
+            <h3 style="color: #ff4444; margin-top: 15px; margin-bottom: 8px;">3. Rote Schleife (Bowtie-Surface)</h3>
+            <p><strong>Formel:</strong> Mathematische Bowtie-Fläche mit 2 Parametern</p>
+            <ul>
+                <li><strong>Link:</strong> http://www.3d-meier.de/tut3/Seite244.html</li>
+                <li><strong>x:</strong> sin(u) / √(2 + sin(v))</li>
+                <li><strong>y:</strong> sin(u) / √(2 + cos(v))</li>
+                <li><strong>z:</strong> cos(u) / (1 + √2)</li>
+                <li><strong>Parameter:</strong> u, v beide von -π bis +π</li>
+                <li><strong>Effekt:</strong> Die Schleife wird skaliert, klein gemacht und oben auf den Baum gesetzt
+                </li>
+            </ul>
+        </section>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
+
+</body>
+
+</html>
