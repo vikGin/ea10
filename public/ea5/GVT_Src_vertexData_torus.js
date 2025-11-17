@@ -48,10 +48,6 @@ var torus = (function () {
 				normals[iVertex * 3 + 1] = ny;
 				normals[iVertex * 3 + 2] = nz;
 
-				// if(i>14){
-				// continue;
-				// }
-
 				// Set index.
 				// Line on beam.
 				if (j > 0 && i > 0) {

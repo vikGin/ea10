@@ -242,12 +242,10 @@ var app = (function () {
 						// Shift+N: Decrease camera distance (zoom in)
 						camera.orbitRadius = Math.max(camera.orbitRadius - 0.5, 0.5); // Minimum distance 0.5
 						camera.distance = camera.orbitRadius; // Sync both distance values
-						console.log("Zoom in: orbitRadius =", camera.orbitRadius);
 					} else {
 						// N: Increase camera distance (zoom out)
 						camera.orbitRadius = Math.min(camera.orbitRadius + 0.5, 20); // Maximum distance 20
 						camera.distance = camera.orbitRadius; // Sync both distance values
-						console.log("Zoom out: orbitRadius =", camera.orbitRadius);
 					}
 					break;
 				case 32: // Spacebar
