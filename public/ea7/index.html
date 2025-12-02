@@ -1,0 +1,73 @@
+<!DOCTYPE html5>
+<html>
+
+<head>
+	<script src="ext/gl-matrix.js"></script>
+	<script src="GVT_Src_vertexData_plane.js"></script>
+	<script src="GVT_Src_vertexData_torus.js"></script>
+	<script src="GVT_Src_vertexData_sphere.js"></script>
+	<script src="GVT_Src_vertexData_cylinder.js"></script>
+	<script src="SHA_Src_tpl.js"></script>
+	<script type="x-shader/x-vertex" id="vertexshader">
+			precision mediump float;
+			
+			attribute vec3 aPosition;
+			attribute vec3 aNormal;
+			
+			uniform mat4 uPMatrix;
+			uniform mat4 uMVMatrix;
+			uniform mat3 uNMatrix;
+			uniform vec4 uColor;
+			uniform bool uIsPlane;
+			
+			varying vec4 vColor;
+			
+			void main(){
+				if (uIsPlane) {
+					float displacement = cos(aPosition.x) * cos(aPosition.z);
+					vec3 newPosition = aPosition + displacement * vec3(0.0, 0.4, 0.0);
+					gl_Position = uPMatrix * uMVMatrix * vec4(newPosition, 1.0);
+					vColor = uColor;
+				} else {
+					gl_Position = uPMatrix * uMVMatrix * vec4(aPosition, 1.0);
+					vec3 transformedNormal = normalize(uNMatrix * aNormal);
+					vec4 lit = vec4(transformedNormal.z, transformedNormal.z, transformedNormal.z, 1.0);
+					vColor = uColor * (lit + 1.0) / 2.0;
+				}
+			}
+		</script>
+	<script type="x-shader/x-fragment" id="fragmentshader">
+			precision mediump float;
+			varying vec4 vColor;
+			
+			// Visualisiere den Z-Buffer als Graustufen:
+			// gl_FragCoord.z ist im Fensterraum [0.0, 1.0],
+			// wobei 0.0 nahe und 1.0 fern zur Kamera ist.
+			void main() {
+				float depth = gl_FragCoord.z;
+				// Optional: Kontrast erhöhen
+				float brightness = depth; // nahe (0) dunkel, fern (1) hell
+				gl_FragColor = vec4(vec3(brightness), 1.0);
+				gl_FragColor = mix(gl_FragColor, vColor, 0.1);
+			}
+		</script>
+</head>
+
+<body onload="app.start()">
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<div style="padding: 15px; background: #fff3cd; border-radius: 8px; margin-bottom: 20px;">
+		<h3 style="margin-top: 0; color: #333;">Kamera-Steuerung:</h3>
+		<div style="font-size: 14px; line-height: 1.5;">
+			<li><strong>w</strong>: Kamera nach oben bewegen</li>
+			<li><strong>s</strong>: Kamera nach unten bewegen</li>
+			<li><strong>a</strong>: Kamera nach links bewegen</li>
+			<li><strong>d</strong>: Kamera nach rechts bewegen</li>
+			<li><strong>Pfeil links/rechts</strong> - Szene um die Y-Achse drehen</li>
+			<li><strong>Pfeil hoch/runter</strong> - Szene um die X-Achse drehen</li>
+
+			</ul>
+		</div>
+	</div>
+</body>
+
+</html>
